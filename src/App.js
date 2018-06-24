@@ -11,6 +11,8 @@ import store from './connectors/redux'
 
 import '../public/scss/custom.scss'
 
+import Navbar from './components/Navbar'
+
 const App = () => (
   <ApolloProvider client={client}>
     <Provider store={store}>
@@ -18,8 +20,13 @@ const App = () => (
         <div>
           <Head>
             <meta charSet="UTF-8" />
-            <title>This is my page title!</title>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1"
+            />
+            <title>Ingredients</title>
           </Head>
+          <Navbar />
           <div className="container">
             <Routes />
           </div>

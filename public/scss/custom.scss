@@ -10,12 +10,6 @@ body {
   padding: 0;
 }
 
-a {
-  text-decoration: none;
-  color: $primary-color;
-  font-weight: bold;
-}
-
 img {
   max-width: 100%;
 }
@@ -35,5 +29,6 @@ nav a {
   padding: 1rem;
 }
 
-@import 'navbar';
+$link-color: #fff;
+
 @import 'bootstrap/scss/bootstrap';

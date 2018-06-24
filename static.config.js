@@ -19,8 +19,8 @@ export default {
         component: 'src/containers/About',
       },
       {
-        path: '/policy',
-        component: 'src/containers/Policy',
+        path: '/privacy-policy',
+        component: 'src/containers/PrivacyPolicy',
       },
       {
         path: '/blog',

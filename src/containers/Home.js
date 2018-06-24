@@ -1,8 +1,44 @@
 import React from 'react'
-import { withSiteData } from 'react-static'
 //
-import withLayout from '../utils/withLayout'
 
-const Home = () => <div>Home</div>
+import Image from '../components/Image'
 
-export default withLayout(Home)
+import down from '../../public/icon/sort-down.svg'
+
+const Home = () => (
+  <div>
+    <div className="row">
+      <div className="col-12 my-4">
+        <h3>Here is our picks!</h3>
+      </div>
+    </div>
+    <div className="row">
+      <div className="col-6 px-1 py-1">
+        <Image width="100%" height="100%" />
+      </div>
+      <div className="col-6">
+        <div className="row">
+          <div className="col-6 px-1 py-1">
+            <Image width="100%" height="200px" />
+          </div>
+          <div className="col-6 px-1 py-1">
+            <Image width="100%" height="200px" />
+          </div>
+          <div className="col-6 px-1 py-1">
+            <Image width="100%" height="200px" />
+          </div>
+          <div className="col-6 px-1 py-1">
+            <Image width="100%" height="200px" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="row">
+      <div className="col-12 mt-5 d-flex justify-content-center">
+        <img src={down} alt="" width="100" height="100" />
+      </div>
+    </div>
+  </div>
+)
+
+export default Home
