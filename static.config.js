@@ -2,6 +2,7 @@ import axios from 'axios'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 export default {
+  siteRoot: 'http://www.ota-ingredient.tk/',
   getSiteData: () => ({
     title: 'React Static',
   }),
@@ -15,26 +16,12 @@ export default {
         component: 'src/containers/Home',
       },
       {
-        path: '/about',
-        component: 'src/containers/About',
-      },
-      {
         path: '/privacy-policy',
         component: 'src/containers/PrivacyPolicy',
       },
       {
-        path: '/blog',
-        component: 'src/containers/Blog',
-        getData: () => ({
-          posts,
-        }),
-        children: posts.map(post => ({
-          path: `/post/${post.id}`,
-          component: 'src/containers/Post',
-          getData: () => ({
-            post,
-          }),
-        })),
+        path: '/feed',
+        component: 'src/containers/Feed',
       },
       {
         is404: true,
@@ -63,7 +50,7 @@ export default {
         },
         {
           loader: 'sass-loader',
-          options: { includePaths: ['src/'] },
+          options: { includePaths: ['public/'] },
         },
       ]
 
