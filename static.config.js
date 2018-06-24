@@ -1,11 +1,14 @@
 import axios from 'axios'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 export default {
   getSiteData: () => ({
     title: 'React Static',
   }),
   getRoutes: async () => {
-    const { data: posts } = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    const { data: posts } = await axios.get(
+      'https://jsonplaceholder.typicode.com/posts'
+    )
     return [
       {
         path: '/',
@@ -35,20 +38,59 @@ export default {
       },
     ]
   },
-  // webpack: (config, { defaultLoaders }) => {
-  //   config.module.rules = [
-  //     {
-  //       oneOf: [
-  //         {
-  //           test: /\.json$/,
-  //           use: [{ loader: 'json-loader' }],
-  //         },
-  //         defaultLoaders.jsLoader,
-  //         defaultLoaders.cssLoader,
-  //         defaultLoaders.fileLoader,
-  //       ],
-  //     },
-  //   ]
-  //   return config
-  // },
+  webpack: (config, { defaultLoaders, stage }) => {
+    let loaders = []
+
+    if (stage === 'dev') {
+      loaders = [
+        { loader: 'style-loader' },
+        { loader: 'css-loader' },
+        { loader: 'sass-loader' },
+      ]
+    } else {
+      loaders = [
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
+            minimize: stage === 'prod',
+            sourceMap: false,
+          },
+        },
+        {
+          loader: 'sass-loader',
+          options: { includePaths: ['src/'] },
+        },
+      ]
+
+      // Don't extract css to file during node build process
+      if (stage !== 'node') {
+        loaders = ExtractTextPlugin.extract({
+          fallback: {
+            loader: 'style-loader',
+            options: {
+              sourceMap: false,
+              hmr: false,
+            },
+          },
+          use: loaders,
+        })
+      }
+    }
+
+    config.module.rules = [
+      {
+        oneOf: [
+          {
+            test: /\.s(a|c)ss$/,
+            use: loaders,
+          },
+          defaultLoaders.cssLoader,
+          defaultLoaders.jsLoader,
+          defaultLoaders.fileLoader,
+        ],
+      },
+    ]
+    return config
+  },
 }

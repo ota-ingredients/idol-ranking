@@ -9,7 +9,7 @@ import { Provider } from 'react-redux'
 import client from './connectors/apollo'
 import store from './connectors/redux'
 
-import './app.css'
+import './app.scss'
 
 const App = () => (
   <ApolloProvider client={client}>
@@ -17,7 +17,9 @@ const App = () => (
       <Router>
         <div>
           <nav>
-            <Link exact to="/">Home</Link>
+            <Link exact to="/">
+              Home
+            </Link>
             <Link to="/about">About</Link>
             <Link to="/blog">Blog</Link>
           </nav>
