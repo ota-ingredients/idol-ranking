@@ -1,0 +1,21 @@
+.navbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo-wrapper {
+  display: flex;
+  flex: 3;
+
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.link-wrapper {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-items: center;
+}
