@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "https://ota-ingredients.github.io/";
+/******/ 	__webpack_require__.p = "http://www.ota-ingredient.tk/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 13);
@@ -2257,4 +2257,4 @@ exports.push([module.i, "body {\n  font-family: \"HelveticaNeue-Light\", \"Helve
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=static.371cc4ef.js.map
+//# sourceMappingURL=static.06c6e883.js.map
