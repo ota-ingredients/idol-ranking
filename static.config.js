@@ -1,33 +1,26 @@
 import axios from 'axios'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 export default {
   getSiteData: () => ({
     title: 'React Static',
   }),
   getRoutes: async () => {
-    const { data: posts } = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    const { data: posts } = await axios.get(
+      'https://jsonplaceholder.typicode.com/posts'
+    )
     return [
       {
         path: '/',
         component: 'src/containers/Home',
       },
       {
-        path: '/about',
-        component: 'src/containers/About',
+        path: '/privacy-policy',
+        component: 'src/containers/PrivacyPolicy',
       },
       {
-        path: '/blog',
-        component: 'src/containers/Blog',
-        getData: () => ({
-          posts,
-        }),
-        children: posts.map(post => ({
-          path: `/post/${post.id}`,
-          component: 'src/containers/Post',
-          getData: () => ({
-            post,
-          }),
-        })),
+        path: '/feed',
+        component: 'src/containers/Feed',
       },
       {
         is404: true,
@@ -35,20 +28,59 @@ export default {
       },
     ]
   },
-  // webpack: (config, { defaultLoaders }) => {
-  //   config.module.rules = [
-  //     {
-  //       oneOf: [
-  //         {
-  //           test: /\.json$/,
-  //           use: [{ loader: 'json-loader' }],
-  //         },
-  //         defaultLoaders.jsLoader,
-  //         defaultLoaders.cssLoader,
-  //         defaultLoaders.fileLoader,
-  //       ],
-  //     },
-  //   ]
-  //   return config
-  // },
+  webpack: (config, { defaultLoaders, stage }) => {
+    let loaders = []
+
+    if (stage === 'dev') {
+      loaders = [
+        { loader: 'style-loader' },
+        { loader: 'css-loader' },
+        { loader: 'sass-loader' },
+      ]
+    } else {
+      loaders = [
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
+            minimize: stage === 'prod',
+            sourceMap: false,
+          },
+        },
+        {
+          loader: 'sass-loader',
+          options: { includePaths: ['public/'] },
+        },
+      ]
+
+      // Don't extract css to file during node build process
+      if (stage !== 'node') {
+        loaders = ExtractTextPlugin.extract({
+          fallback: {
+            loader: 'style-loader',
+            options: {
+              sourceMap: false,
+              hmr: false,
+            },
+          },
+          use: loaders,
+        })
+      }
+    }
+
+    config.module.rules = [
+      {
+        oneOf: [
+          {
+            test: /\.s(a|c)ss$/,
+            use: loaders,
+          },
+          defaultLoaders.cssLoader,
+          defaultLoaders.jsLoader,
+          defaultLoaders.fileLoader,
+        ],
+      },
+    ]
+    return config
+  },
 }

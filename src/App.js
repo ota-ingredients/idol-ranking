@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Link } from 'react-static'
+import { Router, Link, Head } from 'react-static'
 import { hot } from 'react-hot-loader'
 //
 import Routes from 'react-static-routes'
@@ -9,19 +9,25 @@ import { Provider } from 'react-redux'
 import client from './connectors/apollo'
 import store from './connectors/redux'
 
-import './app.css'
+import '../public/scss/custom.scss'
+
+import Navbar from './components/Navbar'
 
 const App = () => (
   <ApolloProvider client={client}>
     <Provider store={store}>
       <Router>
         <div>
-          <nav>
-            <Link exact to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/blog">Blog</Link>
-          </nav>
-          <div className="content">
+          <Head>
+            <meta charSet="UTF-8" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1"
+            />
+            <title>Ingredients</title>
+          </Head>
+          <Navbar />
+          <div className="container">
             <Routes />
           </div>
         </div>
