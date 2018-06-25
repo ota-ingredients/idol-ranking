@@ -2,7 +2,6 @@ import axios from 'axios'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 export default {
-  siteRoot: 'http://www.ota-ingredient.tk/',
   getSiteData: () => ({
     title: 'React Static',
   }),

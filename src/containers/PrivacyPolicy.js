@@ -1,20 +1,48 @@
 import React from 'react'
 
 import '../../public/scss/privacy.scss'
-import withLayout from '../utils/withLayout'
 
 const PrivacyPolicy = () => {
   return (
-    <div className="content-wrapper">
-      <h1>Privacy Policy</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo laborum
-        doloremque a ipsum, voluptates ex magni. Totam, inventore ea sequi
-        facilis incidunt eum accusamus vel impedit perspiciatis atque maxime!
-        Reprehenderit!
-      </p>
+    <div className="row">
+      <div className="col-12 mt-5">
+        <div className="row d-flex justify-content-center">
+          <div className="col-12 d-flex justify-content-center">
+            <h1>Privacy Policy</h1>
+          </div>
+          <div className="col-10 mt-5">
+            <p>
+              1.การสมัครแอพจะใช้ข้อมูลของผู้ใช้จาก facebook
+              ที่มีแค่เลขไอดีของผู้ใช้
+              ที่ไม่สามารถเข้าไปแก้หรือจัดการข้อมูลใดๆของผู้ใช้ได้
+              เป็นรหัสที่ทาง facebook
+              ให้มาเพื่อใช้ในการระบุตัวตนหลังจากกดยอมรับการใช้งานแอพลิเคชั่นของเราแล้วเท่านั้น
+            </p>
+            <p>
+              2.เลขที่ผู้ใช้งาน facebook
+              ของผู้ใช้จะถูกเก็บไว้โดยไม่นำไปเผยแพร่ให้บุคคลภายนอกรับรู้โดยเด็ดขาด
+            </p>
+            <p>
+              3.เราจำเป็นต้องเก็บข้อมูลรหัสผู้ใช้ facebook
+              ของผู้ใช้เพื่อใช้ในการยืนยันตัวตนในการเข้าใช้งานระบบและเพื่อระบุตัวตนของผู้ใช้เพื่อสามารถให้บริการผู้ใช้ได้ถูกต้อง
+            </p>
+            <p>
+              4.ข้อมูลการใช้งานของผู้ใช้ในแอพลิเคชั่น เช่น การเลือกติดตาม, การกด
+              bookmark และอื่นๆ
+              จะไม่มีการเก็บประวัติเพื่อนำไปใช้ประโยชน์อย่างอื่น
+            </p>
+            <p>
+              5.ข้อมูลต่างๆของแอพพลิเคชัน
+              ทั้งที่เป็นส่วนของการให้บริการข้อมูลจากทาง facebook, twitter,
+              instagram
+              จะถูกเก็บรักษาและถูกใช้งานภายใต้เงื่อนไขที่ทางผู้ให้บริการกำหนดไว้เท่านั้น
+              จะไม่นำไปเผยแพร่ออกสู่ธารณะโดยไม่ได้รับอนุญาตโดยเด็ดขาด
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
 
-export default withLayout(PrivacyPolicy)
+export default PrivacyPolicy

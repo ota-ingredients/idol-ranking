@@ -68,10 +68,10 @@ class Navbar extends Component {
               <img className="logo" src={logo} alt="logo" />
             </Link>
             <div className="navbar-link">
-              <Link to="/news">News</Link>
+              <Link to="/feed">News</Link>
             </div>
             <div className="navbar-link">
-              <Link to="/ranking">Ranking</Link>
+              <Link to="/privacy-policy">Privacy Policy</Link>
             </div>
           </div>
 
